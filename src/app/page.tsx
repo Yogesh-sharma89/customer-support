@@ -6,7 +6,7 @@ import {redirect} from 'next/navigation'
 const page = async () => {
   const session = await getSession();
   if(!session?.user?.email){
-    redirect('/')
+    throw new Error('User not authenticated')
   }
   return (
     <div>
