@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import toast from 'react-hot-toast'
 import { useState } from 'react'
 import { Loader2Icon } from 'lucide-react'
-const Navbar = ({email,open,setOpen}:{email:string,open:boolean,setOpen:(val:boolean)=>void}) => {
+const Navbar = ({email,open,setOpen}:{email:string| null,open:boolean,setOpen:(val:boolean)=>void}) => {
 
      const router = useRouter();
      const [loading,setLoading] = useState(false);

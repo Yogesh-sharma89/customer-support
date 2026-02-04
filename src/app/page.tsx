@@ -4,12 +4,12 @@ export const dynamic = "force-dynamic";
 
 const page = async () => {
   const session = await getSession();
-  if(!session?.user?.email){
-    throw new Error('User not authenticated')
-  }
+
+  const email: string | null = session?.user?.email ?? null;
+
   return (
     <div>
-      <Homepage email={session.user.email} />
+      <Homepage email={email} />
     </div>
   );
 };

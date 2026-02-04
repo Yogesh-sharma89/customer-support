@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
 import { useRouter } from "next/navigation";
 
-const Homepage = ({ email }: { email: string }) => {
+const Homepage = ({ email }: { email: string| null }) => {
   const [open, setOpen] = useState(false);
   const divRef = useRef<HTMLDivElement>(null);
 
