@@ -10,7 +10,7 @@ const page = async () => {
   }
   return (
     <div>
-      {session.user.email && <Homepage email={session?.user?.email} />}
+      <Homepage email={session?.user?.email} />
     </div>
   );
 };
