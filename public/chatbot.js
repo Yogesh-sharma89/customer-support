@@ -2,7 +2,7 @@
 
 (function () {
 
-    const apiUrl = 'http://localhost:3000/api/chat'
+    const apiUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/api/chat`
 
     const scriptTag = document.currentScript;
 

@@ -10,9 +10,9 @@ export async function GET(req:NextRequest){
         return NextResponse.json({message:'code is not found'},{status:400})
     }
 
-    const session =  await scaleKit.authenticateWithCode(code,'http://localhost:3000/api/auth/callback')
+    const session =  await scaleKit.authenticateWithCode(code,`${process.env.NEXT_PUBLIC_BASE_URL}/api/auth/callback`)
 
-    const respone = NextResponse.redirect('http://localhost:3000')
+    const respone = NextResponse.redirect(`${process.env.NEXT_PUBLIC_BASE_URL}`)
 
     console.log(session)
 

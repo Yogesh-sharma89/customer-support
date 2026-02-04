@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req:NextRequest,res:NextResponse){
     
-    const redirectUri = 'http://localhost:3000/api/auth/callback'
+    const redirectUri = `${process.env.NEXT_PUBLIC_BASE_URL}/api/auth/callback`
 
     const options = {
             scopes: ['openid', 'profile', 'email', 'offline_access']
