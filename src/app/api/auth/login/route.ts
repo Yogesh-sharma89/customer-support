@@ -1,7 +1,7 @@
 import scaleKit from "@/lib/scalekit";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(req:NextRequest,res:NextResponse){
+export async function GET(req:NextRequest){
     
     const redirectUri = `${process.env.NEXT_PUBLIC_BASE_URL}/api/auth/callback`
 
