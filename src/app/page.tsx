@@ -1,16 +1,16 @@
 import { getSession } from "@/lib/getUserSession";
 import Homepage from "@/pages/home";
 export const dynamic = "force-dynamic";
-
+import {redirect} from 'next/navigation'
 
 const page = async () => {
   const session = await getSession();
   if(!session?.user?.email){
-    return null;
+    redirect('/')
   }
   return (
     <div>
-      <Homepage email={session?.user?.email} />
+      <Homepage email={session.user.email} />
     </div>
   );
 };

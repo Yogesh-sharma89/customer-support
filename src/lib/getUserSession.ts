@@ -12,10 +12,10 @@ export async function getSession(){
         }
 
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const result:any = await scaleKit.validateToken(token!)
+        const result:any = await scaleKit.validateToken(token)
          const user = await scaleKit.user.getUser(result.sub)
          
-         return user
+        return user
 
     }catch(err){
         console.log(`Error in getsession : ${err}`)
