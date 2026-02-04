@@ -1,11 +1,14 @@
-import React from 'react'
+import { getSession } from "@/lib/getUserSession";
+import Homepage from "@/pages/home";
 
-const page = () => {
+
+const page = async () => {
+  const session = await getSession();
   return (
     <div>
-      Hey this is my home
+      <Homepage email={session?.user?.email} />
     </div>
-  )
-}
+  );
+};
 
-export default page
+export default page;
