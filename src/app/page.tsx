@@ -5,11 +5,11 @@ import Homepage from "@/pages/home";
 const page = async () => {
   const session = await getSession();
   if(!session?.user?.email){
-    throw new Error('Email not found')
+    return null;
   }
   return (
     <div>
-      <Homepage email={session?.user?.email} />
+      {session.user.email && <Homepage email={session?.user?.email} />}
     </div>
   );
 };
