@@ -1,8 +1,8 @@
 import connectDb from "@/lib/db";
 import Settings from "@/models/settings.model";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function POST(req:NextResponse){
+export async function POST(req:NextRequest){
     try{
 
         const {ownerId} = await req.json()
@@ -18,7 +18,7 @@ export async function POST(req:NextResponse){
 
         const setting = await Settings.findOne({ownerId});
 
-        return NextResponse.json(setting)
+        return NextResponse.json(setting.toObject())
 
     }catch(err){
         console.log('Error occured in  get  api : '+err)

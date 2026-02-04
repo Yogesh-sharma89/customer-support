@@ -22,7 +22,7 @@ export async function POST(req:NextRequest){
             {new:true,upsert:true,runValidators:true}
         )
 
-        return NextResponse.json(settings)
+        return NextResponse.json({settings})
 
 
     }catch(err){
