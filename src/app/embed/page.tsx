@@ -1,6 +1,8 @@
+export const dynamic = "force-dynamic";
+
+
 import EmbedClient from '@/components/EmbedClient';
 import { getSession } from '@/lib/getUserSession'
-import { Loader } from 'lucide-react';
 
 
 const EmbedPage = async() => {

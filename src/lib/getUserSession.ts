@@ -7,6 +7,10 @@ export async function getSession(){
         const session = await cookies();
         const token = session.get('access_token')?.value
 
+        if(!token){
+            return null;
+        }
+
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const result:any = await scaleKit.validateToken(token!)
          const user = await scaleKit.user.getUser(result.sub)

@@ -1,6 +1,8 @@
 import DashboardClient from "@/components/DashboardClient";
 import { getSession } from "@/lib/getUserSession"
 
+export const dynamic = "force-dynamic";
+
 
 const DashboardPage = async() => {
     const session = await getSession();

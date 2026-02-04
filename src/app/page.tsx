@@ -1,5 +1,6 @@
 import { getSession } from "@/lib/getUserSession";
 import Homepage from "@/pages/home";
+export const dynamic = "force-dynamic";
 
 
 const page = async () => {
