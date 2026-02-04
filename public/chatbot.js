@@ -2,7 +2,7 @@
 
 (function () {
 
-    const apiUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/api/chat`
+    const apiUrl = 'https://customer-support-kappa-nine.vercel.app/api/chat'
 
     const scriptTag = document.currentScript;
 

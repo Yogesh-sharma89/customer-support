@@ -14,7 +14,7 @@ const EmbedClient = ({ownerId}:{ownerId:string}) => {
 
   const embedCode = `
    <script 
-      src=${process.env.NEXT_PUBLIC_BASE_URL}/chatbot.js
+      src= 'https://customer-support-kappa-nine.vercel.app/chatbot.js'
       data-owner-id = ${ownerId}>
     </script>
   `
