@@ -13,7 +13,7 @@ export async function OPTIONS(req:NextRequest) {
     { 
         status:204,
         headers: {
-                "Access-Control-Allow-Origin": origin!, // dev only
+                "Access-Control-Allow-Origin": '*', // dev only
                 "Access-Control-Allow-Methods": "POST, OPTIONS",
                 "Access-Control-Allow-Headers": "Content-Type, Authorization",
                 "Access-Control-Allow-Credentials": "true",
@@ -138,7 +138,7 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({response:response.text},{
             status:200,
             headers:{
-                "Access-Control-Allow-Origin": origin!, // dev only
+                "Access-Control-Allow-Origin": '*', // dev only
                 "Access-Control-Allow-Methods": "POST, OPTIONS",
                 "Access-Control-Allow-Headers": "Content-Type, Authorization",
                 "Access-Control-Allow-Credentials": "true",
