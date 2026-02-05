@@ -9,8 +9,9 @@ export async function OPTIONS(req:NextRequest) {
 
     const origin = req.headers.get('origin');
 
-  return NextResponse.json({}, 
+  return NextResponse.json(null, 
     { 
+        status:204,
         headers: {
                 "Access-Control-Allow-Origin": origin!, // dev only
                 "Access-Control-Allow-Methods": "POST, OPTIONS",
@@ -135,6 +136,7 @@ export async function POST(req: NextRequest) {
 
 
         return NextResponse.json({response:response.text},{
+            status:200,
             headers:{
                 "Access-Control-Allow-Origin": origin!, // dev only
                 "Access-Control-Allow-Methods": "POST, OPTIONS",
@@ -147,7 +149,14 @@ export async function POST(req: NextRequest) {
         console.log(`Error in chat api ${err}`)
         return NextResponse.json(
             {message:'Error in chat api'},
-            {status:500}
+            {status:500,
+                headers:{
+                    "Access-Control-Allow-Origin": "*", // dev only
+                    "Access-Control-Allow-Methods": "POST, OPTIONS",
+                    "Access-Control-Allow-Headers": "Content-Type, Authorization",
+                    "Access-Control-Allow-Credentials": "true",
+                }
+            }
         )
 
     }
