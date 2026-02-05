@@ -234,7 +234,7 @@
 
             const response = await fetch(apiUrl,{
                 method:'POST',
-                headers:{"content-type":"application/json"},
+                headers:{"Content-Type":"application/json"},
                 body:JSON.stringify({
                     message:text,ownerId
                 })
