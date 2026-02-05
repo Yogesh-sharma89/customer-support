@@ -3,18 +3,29 @@ import connectDb from "@/lib/db";
 import Settings from "@/models/settings.model";
 import { NextRequest, NextResponse } from "next/server";
 
-const corsHeaders = {
-                "Access-Control-Allow-Origin": "*", // dev only
-                "Access-Control-Allow-Methods": "POST, OPTIONS",
-                "Access-Control-Allow-Headers": "Content-Type",
-};
 
-export async function OPTIONS() {
-  return NextResponse.json({}, { headers: corsHeaders });
+
+export async function OPTIONS(req:NextRequest) {
+
+    const origin = req.headers.get('origin');
+
+  return NextResponse.json({}, 
+    { 
+        headers: {
+                "Access-Control-Allow-Origin": origin!, // dev only
+                "Access-Control-Allow-Methods": "POST, OPTIONS",
+                "Access-Control-Allow-Headers": "Content-Type, Authorization",
+                "Access-Control-Allow-Credentials": "true",
+    }
+
+    }
+);
 }
 
 export async function POST(req: NextRequest) {
     try {
+
+        const origin = req.headers.get('origin')
 
         const { message, ownerId } = await req.json()
 
@@ -124,7 +135,12 @@ export async function POST(req: NextRequest) {
 
 
         return NextResponse.json({response:response.text},{
-            headers:corsHeaders
+            headers:{
+                "Access-Control-Allow-Origin": origin!, // dev only
+                "Access-Control-Allow-Methods": "POST, OPTIONS",
+                "Access-Control-Allow-Headers": "Content-Type, Authorization",
+                "Access-Control-Allow-Credentials": "true",
+            }
         })
 
     } catch (err) {
