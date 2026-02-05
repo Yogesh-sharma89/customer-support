@@ -20,7 +20,7 @@ export async function GET(req:NextRequest){
         httpOnly:true,
         maxAge:24*60*60*1000,
         path:'/',
-        secure:false
+        secure:true
     })
 
     return respone;

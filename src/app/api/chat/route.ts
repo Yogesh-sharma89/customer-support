@@ -5,28 +5,10 @@ import { NextRequest, NextResponse } from "next/server";
 
 
 
-export async function OPTIONS(req:NextRequest) {
 
-    const origin = req.headers.get('origin');
-
-  return NextResponse.json(null, 
-    { 
-        status:204,
-        headers: {
-                "Access-Control-Allow-Origin": '*', // dev only
-                "Access-Control-Allow-Methods": "POST, OPTIONS",
-                "Access-Control-Allow-Headers": "Content-Type, Authorization",
-                "Access-Control-Allow-Credentials": "true",
-    }
-
-    }
-);
-}
 
 export async function POST(req: NextRequest) {
     try {
-
-        const origin = req.headers.get('origin')
 
         const { message, ownerId } = await req.json()
 
@@ -135,29 +117,46 @@ export async function POST(req: NextRequest) {
         
 
 
-        return NextResponse.json({response:response.text},{
+        const result =  NextResponse.json({response:response.text},{
             status:200,
-            headers:{
+        })
+
+        result.headers.set("Access-Control-Allow-Origin","*");
+        result.headers.set("Access-Control-Allow-Methods", "POST, OPTIONS");
+        result.headers.set("Access-Control-Allow-Headers", "Content-Type, Authorization");
+
+        return result;
+
+
+    } catch (err) {
+        console.log(`Error in chat api ${err}`)
+
+        const result =  NextResponse.json(
+            {message:'Error in chat api'},
+            {status:500}
+        )
+
+        result.headers.set("Access-Control-Allow-Origin","*");
+        result.headers.set("Access-Control-Allow-Methods", "POST, OPTIONS");
+        result.headers.set("Access-Control-Allow-Headers", "Content-Type, Authorization");
+
+        return result;
+
+    }
+}
+
+export async function OPTIONS() {
+
+  return NextResponse.json(null, 
+    { 
+        status:201,
+        headers: {
                 "Access-Control-Allow-Origin": '*', // dev only
                 "Access-Control-Allow-Methods": "POST, OPTIONS",
                 "Access-Control-Allow-Headers": "Content-Type, Authorization",
                 "Access-Control-Allow-Credentials": "true",
-            }
-        })
-
-    } catch (err) {
-        console.log(`Error in chat api ${err}`)
-        return NextResponse.json(
-            {message:'Error in chat api'},
-            {status:500,
-                headers:{
-                    "Access-Control-Allow-Origin": "*", // dev only
-                    "Access-Control-Allow-Methods": "POST, OPTIONS",
-                    "Access-Control-Allow-Headers": "Content-Type, Authorization",
-                    "Access-Control-Allow-Credentials": "true",
-                }
-            }
-        )
+    }
 
     }
+);
 }
