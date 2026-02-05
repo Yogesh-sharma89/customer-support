@@ -1,6 +1,6 @@
 'use client'
 import axios from 'axios';
-import { Loader2Icon } from 'lucide-react';
+import { Loader2Icon, LoaderIcon } from 'lucide-react';
 import {motion} from 'motion/react'
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -14,8 +14,10 @@ const DashboardClient = ({ id }: { id: string }) => {
     const [supportEmail,setSupportEmail]= useState('');
     const [data,setData]= useState('');
     const [loading,setLoading] = useState(false)
+    const [dataLoading,setDataLoading]  = useState(false)
 
     const handleSettings = async()=>{
+
       if(!businessName || !supportEmail || !data){
         toast.error('All fields are required')
         return;
@@ -46,6 +48,7 @@ const DashboardClient = ({ id }: { id: string }) => {
       
       const fetchData = async()=>{
           try{
+            setDataLoading(true)
 
             const {data} = await axios.post('/api/settings/get',{ownerId:id});
 
@@ -56,6 +59,8 @@ const DashboardClient = ({ id }: { id: string }) => {
           }catch(err){
             console.log('Error while fetching business data : ',err)
             toast.error('Failed to get data')
+          }finally{
+            setDataLoading(false)
           }
       }
 
@@ -67,6 +72,16 @@ const DashboardClient = ({ id }: { id: string }) => {
       return ()=>{}
       
     },[id])
+
+    if(dataLoading){
+      return (
+        <div className='flex flex-1 w-full h-screen items-center justify-center gap-2'>
+          <LoaderIcon className='size-5 animate-spin'/>
+          <span className='text-lg'>Loading...</span>
+
+        </div>
+      )
+    }
  
   return (
     <div className="min-h-screen bg-zinc-50 text-zinc-900">
